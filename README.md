@@ -1,13 +1,10 @@
-# verifier
-Offline DSSE+JCS verifier (zero deps, deterministic, Node + Browser)
-
-# 1seal / SealGuard (alpha)
+# 1seal / SealGuard (beta)
 
   Offline **pre-transaction security for AI agents and server-side wallet APIs**, plus DSSE+JCS verification.
   SealGuard sits **between policy/simulation and MPC/HSM**, providing deterministic address guardrails.
   TxSeal emits DSSE receipts that can be verified offline with zero runtime dependencies.
 
-  > **Status: private alpha – not a generally available, production-supported product.**
+  > **Status: private beta – not a generally available, production-supported product.**
   > Core engine and full rule sets are currently iterated with a small set of design partners.
 
   ---
@@ -46,7 +43,7 @@ Offline DSSE+JCS verifier (zero deps, deterministic, Node + Browser)
 
   ---
 
-  ## Intended use (alpha / design partners)
+  ## Intended use (beta / design partners)
 
   If you are evaluating 1seal / SealGuard / TxSeal as a potential design partner:
 
@@ -74,9 +71,9 @@ Offline DSSE+JCS verifier (zero deps, deterministic, Node + Browser)
 
   ---
 
-  ## Security and alpha disclaimer
+  ## Security and beta disclaimer
 
-  This is **research / alpha-stage security infrastructure**.
+  This is **research / beta-stage security infrastructure**.
 
   - Do not treat it as a drop-in replacement for a full production security program.
   - Do not rely on it as the **only** control for high-value funds without independent review.
