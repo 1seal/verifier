@@ -2,6 +2,10 @@
 
 # 1seal/verifier
 
+This is not the LMV semantic verifier.
+This is a minimal offline DSSE/JCS evidence verifier.
+The LMV semantic/accountable verifier remains private/pre-release.
+
 Offline **DSSE + JCS** verifier — **zero deps**, **deterministic**, works in **Node + Browser**.
 
 This repo is the minimal, auditable verification layer for DSSE envelopes whose payloads are canonicalized with JCS (RFC 8785). It’s designed for constrained environments: no network egress, minimal containers, airgapped CI, and “bring-your-own-trust-root” deployments.
