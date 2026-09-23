@@ -1,51 +1,49 @@
-<!-- path: README.md -->
-
 # 1seal/verifier
 
-Offline **DSSE + JCS** verifier — **zero deps**, **deterministic**, works in **Node + Browser**.
+draft documentation for an offline DSSE/JCS evidence verifier.
 
-This repo is the minimal, auditable verification layer for DSSE envelopes whose payloads are canonicalized with JCS (RFC 8785). It’s designed for constrained environments: no network egress, minimal containers, airgapped CI, and “bring-your-own-trust-root” deployments.
+## current public status
 
-## What it verifies
+as of 2026-09-23, this repository's public `main` contains documentation,
+security guidance and a license. it does not contain an executable verifier,
+an installable package, or a Node/browser implementation.
 
-You hand the verifier two things:
+the semantic LMV implementation remains private/pre-release. this repository
+is not a published reference implementation of the full semantic LMV model.
+see the [current project status](https://1seal.org/status/).
 
-- a DSSE envelope (JSON)
-- a public key you trust (typically **SPKI PEM**)
+## browser field-check demo
 
-It returns a deterministic verification report with **RC.* reason codes** (no “best effort”, no network fallbacks).
+the [playground](https://1seal.org/playground/) checks required fields only.
+it does not verify signatures, perform JCS canonicalization, establish signer
+trust, or evaluate semantic LMV invariants. a successful field check is not
+cryptographic verification.
 
-## Design constraints (intentional)
+## proposed design, not shipped behavior
 
-- **Offline by default**: verification must not depend on external services.
-- **Deterministic**: same inputs → same result.
-- **Fail-closed**: parse error / unknown format / invalid signature → fail.
-- **Bring-your-own-keys**: explicit key ring, no certificate chains, no external lookups.
+the proposed evidence verifier would check DSSE envelopes with JCS
+(RFC 8785) payloads against explicitly configured trusted public keys.
+intended constraints are offline operation, deterministic results and explicit
+failure on unsupported input or invalid signatures, without network fallbacks.
 
-## Quick try (no install)
+these are design goals, not capabilities demonstrated by the current public
+repository. no implementation release date or completed validation is claimed.
 
-Paste an envelope + public key and verify locally in the browser playground:
+## scope boundary
 
-https://1seal.org/playground
+cryptographic evidence verification and semantic intent/payload checks are
+different tasks. a valid signature alone does not establish that a payload
+matches declared intent, is safe, lawful, approved or generally trustworthy.
+it also does not rule out a compromised signing key or signer.
 
-## Non-goals
+the proposed evidence verifier is not a full Sigstore client: Rekor/Fulcio
+lookups, OIDC keyless flows and remote consistency checks are outside its
+described scope.
 
-This verifier is not trying to be a full Sigstore client:
+## reporting security issues
 
-- no Rekor/Fulcio lookups
-- no OIDC “keyless” flows
-- no remote time/consistency assumptions
+please do not open public issues for security reports. see [SECURITY.md](SECURITY.md).
 
-If you need those, use Sigstore tooling. If you need offline, deterministic verification with explicit trust roots — this is the point.
+## license
 
-## Security model (honest)
-
-This helps when **bytes drift** or when evidence needs to be verified in locked-down environments. It does **not** protect against compromised private keys or a fully compromised signer.
-
-## Reporting security issues
-
-Please do **not** open public issues for security bugs. See `SECURITY.md`.
-
-## License
-
-Apache-2.0.
+Apache-2.0; see [LICENSE](LICENSE).
